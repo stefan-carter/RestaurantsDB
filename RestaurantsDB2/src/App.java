@@ -19,17 +19,17 @@ public class App {
         }
 
         Statement getAllCafes = DB.conn.createStatement();
-        PreparedStatement getOneCafe = DB.conn.prepareStatement("SELECT * FROM cafes WHERE ID = ?:");
+        PreparedStatement getOneCafe = DB.conn.prepareStatement("SELECT * FROM cafes WHERE id = ?;");
 
         try {
             ResultSet results = getAllCafes.executeQuery("SELECT * FROM cafes;");
             while (results.next()) {
                 System.out.printf("ID: %d\n", results.getInt(1));
-                System.out.printf("Name: %d\n", results.getString(2));
+                System.out.printf("Name: %s\n", results.getString(2));
             }
             getOneCafe.setInt(1, 4);
             ResultSet starcafe = getOneCafe.executeQuery();
-            System.out.printf("Winner is: %d\n", starcafe.getString(2));
+            System.out.printf("Winner is: %s\n", starcafe.getString(2));
         } catch (SQLException errr) {
 
         }
